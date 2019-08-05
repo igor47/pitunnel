@@ -88,8 +88,18 @@ This will begin running the SSH tunnel.
 
 ## Usage ##
 
-On `remote`, you an `ssh localhost -p <remote_port>` to connect back to `local`.
-If the connection dies, the tunnel will be re-created, so long as `local` can communicate with `remote`.
+To connect to the `local` machine, first connect to `remote`.
+Then, on `remote`, run:
+
+```bash
+$ ssh pi@localhost -p <remote_port>
+```
+
+Replace `pi` with your `local` username (whatever you put as `User=` in [local setup](#local-setup).
+
+## Troubleshooting ##
+
+So long as `local` can communicate with `remote`, the tunnel will be re-created if it does for any reason.
 It might take a minute or two for existing connections to time out, so keep trying if it doesn't work at first.
 
 To check on the status of the tunnel, you can run:
