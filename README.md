@@ -13,7 +13,7 @@ Make sure the `remote` machine is reliably online.
 I use a server with a static IP address, but you can also use a dynamic DNS name.
 
 Create a `remote_user` for the tunnel; here, I use `pitunnel`.
-Replace `<ssh_key>` with the SSH key you create in the [Local setup](#Local_setup) section. 
+Replace `<ssh_key>` with the SSH key you create in the [Local setup](#local-setup) section. 
 
 ```bash
 $ sudo useradd -m pitunnel
@@ -57,7 +57,7 @@ Next, clone this repo and edit `tunnel.sh`.
 You will need to customize these variables:
 * `remote_host` -- the hostname or IP of the `remote` server
 * `remote_port` -- the port on the `remote` server where `local` will be available
-* `remote_user` -- the user you created in the [remote setup](#Remote_setup) section
+* `remote_user` -- the user you created in the [remote setup](#remote-setup) section
 
 If you're not running on a Raspberry Pi, you should also edit `tunnel.service` and customize this line:
 
