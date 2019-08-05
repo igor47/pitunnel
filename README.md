@@ -24,7 +24,7 @@ $ exit
 ```
 
 You should also configure the SSH service to time out stale connections.
-Edit `/etc/ssh/sshd.config` and make add a section like so:
+Edit `/etc/ssh/sshd_config` and make add a section like so:
 
 ```
 # disconnect idle clients after a minute
@@ -33,6 +33,17 @@ ClientAliveCountMax 3
 ```
 
 This will cause the SSH server to ping connected clients every 20 seconds, and disconnect if 3 pings fail.
+Make sure your `sshd_config` is still valid by running:
+
+```bash
+$ sshd -t && echo 'looks good' || echo 'sshd config is invalid'
+```
+
+If it outputs `looks good` then you can go ahead and restart `sshd`:
+
+```bash
+$ sudo systemctl reload sshd
+```
 
 ## Local setup ##
 
