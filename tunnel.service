@@ -1,0 +1,14 @@
+[Unit]
+Description=Auto Reverse SSH
+Requires=systemd-networkd-wait-online.service
+After=systemd-networkd-wait-online.service
+
+[Service]
+ExecStart=/root/tunnel.sh
+RestartSec=5s
+Restart=always
+User=pi
+Group=pi
+
+[Install]
+WantedBy=multi-user.target
