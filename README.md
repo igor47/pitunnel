@@ -19,7 +19,9 @@ Replace `<ssh_key>` with the SSH key you create in the [Local setup](#local-setu
 $ sudo useradd -m pitunnel
 $ sudo su - pitunnel
 $ mkdir ~/.ssh
+$ chmod 700 ~/.ssh
 $ echo <ssh_key> > authorized_keys
+$ chmod 600 .ssh/authorized_keys
 $ exit
 ```
 
