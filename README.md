@@ -25,6 +25,20 @@ $ chmod 600 .ssh/authorized_keys
 $ exit
 ```
 
+This user is only used for tunnels, so we can deny it interactive access.
+
+```console
+$ tee /etc/ssh/sshd_config.d/pitunnel << DONE
+Match User pitunnel
+  AllowTcpForwarding yes
+  X11Forwarding no
+  PermitTunnel yes
+  AllowAgentForwarding no
+  PermitTTY no
+  ForceCommand /usr/sbin/nologin
+DONE
+```
+
 You should also configure the SSH service to time out stale connections.
 Edit `/etc/ssh/sshd_config` and make add a section like so:
 
@@ -38,7 +52,7 @@ This will cause the SSH server to ping connected clients every 20 seconds, and d
 Make sure your `sshd_config` is still valid by running:
 
 ```bash
-$ sshd -t && echo 'looks good' || echo 'sshd config is invalid'
+$ sudo sshd -t && echo 'looks good' || echo 'sshd config is invalid'
 ```
 
 If it outputs `looks good` then you can go ahead and restart `sshd`:
